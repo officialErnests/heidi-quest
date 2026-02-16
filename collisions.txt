@@ -1,0 +1,3 @@
+layer 0 = player
+layer 1 = enemy
+layer 2 = obsticles

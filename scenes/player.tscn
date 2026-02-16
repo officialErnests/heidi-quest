@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cwe83cxlguycw"]
+
+[ext_resource type="Texture2D" uid="uid://ctjhfc7ywdroi" path="res://Assets/heidi.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dk4pakl5fg65g" path="res://Scripts/Process/NB_player.gd" id="1_g2els"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 6.0
+
+[node name="player" type="CharacterBody2D" unique_id=1619263095]
+script = ExtResource("1_g2els")
+
+[node name="heidi" type="Sprite2D" parent="." unique_id=784611933]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1814730411]
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=811485987]
+zoom = Vector2(4, 4)
