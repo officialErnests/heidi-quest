@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bqbh02qhmupqj" path="res://Assets/tilemap.png" id="1_s3esy"]
 [ext_resource type="Texture2D" uid="uid://bvfpcxqcc3u2o" path="res://Assets/tree.png" id="2_d2op2"]
 [ext_resource type="PackedScene" uid="uid://cwe83cxlguycw" path="res://scenes/player.tscn" id="3_0rdsr"]
+[ext_resource type="Script" uid="uid://beyqjvlbh6kox" path="res://Scripts/Process/enemy_spawner.gd" id="4_0rdsr"]
+[ext_resource type="PackedScene" uid="uid://dii0pii7lksh2" path="res://scenes/enemie.tscn" id="5_ipu61"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72e8q"]
 texture = ExtResource("1_s3esy")
@@ -57,3 +59,8 @@ tile_set = SubResource("TileSet_0rdsr")
 
 [node name="player" parent="Dynamic" unique_id=1619263095 instance=ExtResource("3_0rdsr")]
 speed = 200.0
+
+[node name="Enemy_spawner" type="Node2D" parent="Dynamic" unique_id=2133588001 node_paths=PackedStringArray("player")]
+script = ExtResource("4_0rdsr")
+player = NodePath("../player")
+packed_enemy = ExtResource("5_ipu61")

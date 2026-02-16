@@ -95,11 +95,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(20, 40)
 
-[node name="player" type="CharacterBody2D" unique_id=1619263095 node_paths=PackedStringArray("swing_animation_player", "swing_node")]
-collision_mask = 7
+[node name="player" type="CharacterBody2D" unique_id=1619263095 node_paths=PackedStringArray("swing_animation_player", "swing_node", "visual")]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_g2els")
 swing_animation_player = NodePath("Sword/AnimationPlayer")
 swing_node = NodePath("Sword")
+visual = NodePath("heidi")
 
 [node name="heidi" type="Sprite2D" parent="." unique_id=784611933]
 texture = ExtResource("1_3vyb7")

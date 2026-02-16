@@ -6,9 +6,13 @@ extends CharacterBody2D
 @export var swing_dmg: float = 1
 @export var swing_animation_player: AnimationPlayer
 @export var swing_node: Node2D
+@export var visual: Sprite2D
 var swing_timer = 0
+var timer: float = 0
 
 func _process(delta: float) -> void:
+	timer += delta
+	visual.flip_h = int(timer * 5) % 2 == 0
 	if swing_timer > 0:
 		swing_timer -= delta
 	elif Input.is_action_pressed("swing"):
