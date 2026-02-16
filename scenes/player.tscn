@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ctjhfc7ywdroi" path="res://Assets/heidi.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dk4pakl5fg65g" path="res://Scripts/Process/NB_player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cs4wefbslyapt" path="res://Assets/Sword.png" id="3_qhqgy"]
+[ext_resource type="Theme" uid="uid://soe48e6gy2eo" path="res://Themes/main_theme.tres" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 6.0
@@ -85,6 +86,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(15, -12), Vector2(18, 0), Vector2(15, 12)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"dmg_twice"
+}, {
+"args": [],
+"method": &"dmg_twice"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
 _data = {
@@ -93,12 +111,24 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(40, 40)
+size = Vector2(22, 40)
 
-[node name="player" type="CharacterBody2D" unique_id=1619263095 node_paths=PackedStringArray("swing_animation_player", "swing_node", "visual", "swing_area")]
+[sub_resource type="FontVariation" id="FontVariation_dqkch"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qlg0r"]
+font = SubResource("FontVariation_dqkch")
+font_color = Color(1, 0, 0, 1)
+outline_size = 7
+outline_color = Color(0.43529412, 0, 0, 1)
+shadow_color = Color(1, 0, 0, 1)
+shadow_offset = Vector2(10, 10)
+
+[node name="player" type="CharacterBody2D" unique_id=1619263095 node_paths=PackedStringArray("label", "swing_animation_player", "swing_node", "visual", "swing_area")]
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_g2els")
+speed = 10.0
+label = NodePath("CanvasLayer/Label")
 swing_animation_player = NodePath("Sword/AnimationPlayer")
 swing_node = NodePath("Sword")
 visual = NodePath("heidi")
@@ -111,7 +141,7 @@ texture = ExtResource("1_3vyb7")
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=811485987]
-zoom = Vector2(4, 4)
+zoom = Vector2(2, 2)
 
 [node name="Sword" type="Node2D" parent="." unique_id=1878140392]
 
@@ -129,5 +159,17 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D" unique_id=795967058]
-position = Vector2(27, 0)
+position = Vector2(18, 0)
 shape = SubResource("RectangleShape2D_fjrip")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1585523355]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=161376987]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 657.0
+offset_bottom = 134.0
+theme = ExtResource("4_dqkch")
+text = "Slimes gathered: 0/100
+"
+label_settings = SubResource("LabelSettings_qlg0r")
