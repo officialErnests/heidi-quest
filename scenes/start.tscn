@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://fhijn37x7rys"]
+
+[ext_resource type="Shader" uid="uid://svscq65i8jwl" path="res://Scripts/Shaders/start.gdshader" id="1_jaeev"]
+[ext_resource type="Theme" uid="uid://soe48e6gy2eo" path="res://Themes/main_theme.tres" id="2_bodal"]
+[ext_resource type="Script" uid="uid://dyovd5irytt0i" path="res://Scripts/OneTime/button_master.gd" id="3_kdmts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u80x2"]
+shader = ExtResource("1_jaeev")
+
+[node name="start" type="Control" unique_id=864082902]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1787973685]
+material = SubResource("ShaderMaterial_u80x2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.33841872, 9.62615e-08, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=818418924]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.5
+offset_top = -173.5
+offset_right = 225.5
+offset_bottom = 173.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bodal")
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1943716622]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme = ExtResource("2_bodal")
+text = "HEIDI QUEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer" unique_id=387855888]
+layout_mode = 2
+text = "PLAY"
+script = ExtResource("3_kdmts")
+
+[node name="Full_screen" type="Button" parent="VBoxContainer" unique_id=956793362]
+layout_mode = 2
+text = "FULL SCREEN"
+script = ExtResource("3_kdmts")
+fullscreen = true
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1422229430]
+layout_mode = 2
+text = "EXIT"
+script = ExtResource("3_kdmts")
+exit = true

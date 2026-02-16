@@ -1,0 +1,29 @@
+[gd_resource type="Theme" format=3 uid="uid://soe48e6gy2eo"]
+
+[sub_resource type="SystemFont" id="SystemFont_j4s34"]
+font_names = PackedStringArray("Sans-Serif")
+font_italic = true
+font_weight = 999
+font_stretch = 50
+
+[sub_resource type="FontVariation" id="FontVariation_8cjo3"]
+base_font = SubResource("SystemFont_j4s34")
+variation_embolden = 0.51
+variation_transform = Transform2D(2.46, -0.005, 0, 1.385, 0, 0)
+spacing_glyph = 15
+baseline_offset = 0.79
+
+[sub_resource type="FontVariation" id="FontVariation_ybks7"]
+variation_embolden = 2.0
+variation_transform = Transform2D(3.975, -0.5, 0, 2.81, 0, 0)
+spacing_glyph = 31
+spacing_space = 68
+spacing_top = 69
+spacing_bottom = 32
+
+[resource]
+Button/fonts/font = SubResource("FontVariation_8cjo3")
+Label/colors/font_color = Color(0, 0.6039216, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 10
+Label/fonts/font = SubResource("FontVariation_ybks7")
