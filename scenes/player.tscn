@@ -2,12 +2,104 @@
 
 [ext_resource type="Texture2D" uid="uid://ctjhfc7ywdroi" path="res://Assets/heidi.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dk4pakl5fg65g" path="res://Scripts/Process/NB_player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cs4wefbslyapt" path="res://Assets/Sword.png" id="3_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 6.0
 
-[node name="player" type="CharacterBody2D" unique_id=1619263095]
+[sub_resource type="Animation" id="Animation_dqkch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 12)]
+}
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "swing"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5707964]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword/Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(15, -12), Vector2(18, 0), Vector2(15, 12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"RESET": SubResource("Animation_dqkch"),
+&"swing": SubResource("Animation_qlg0r")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
+size = Vector2(20, 40)
+
+[node name="player" type="CharacterBody2D" unique_id=1619263095 node_paths=PackedStringArray("swing_animation_player", "swing_node")]
+collision_mask = 7
 script = ExtResource("1_g2els")
+swing_animation_player = NodePath("Sword/AnimationPlayer")
+swing_node = NodePath("Sword")
 
 [node name="heidi" type="Sprite2D" parent="." unique_id=784611933]
 texture = ExtResource("1_3vyb7")
@@ -17,3 +109,20 @@ shape = SubResource("CircleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=811485987]
 zoom = Vector2(4, 4)
+
+[node name="Sword" type="Node2D" parent="." unique_id=1878140392]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sword" unique_id=1691472063]
+visible = false
+position = Vector2(14, 12)
+texture = ExtResource("3_qhqgy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sword" unique_id=1137964484]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_tuyoq")
+
+[node name="Area2D" type="Area2D" parent="Sword" unique_id=1419198592]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D" unique_id=795967058]
+position = Vector2(17, 0)
+shape = SubResource("RectangleShape2D_fjrip")
