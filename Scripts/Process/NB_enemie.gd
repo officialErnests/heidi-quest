@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 func dmg(dmg: float) -> bool:
 	hp -= dmg
+	linear_velocity -= (player.global_position - global_position).normalized() * hop_speed * 10
 	if hp > 0: return false
 	else:
 		spawner.enemieDied()

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var swing_animation_player: AnimationPlayer
 @export var swing_node: Node2D
 @export var visual: Sprite2D
+@export var swing_area: Area2D
 var swing_timer = 0
 var timer: float = 0
 
@@ -21,6 +22,8 @@ func _process(delta: float) -> void:
 		swing_node.look_at(cursor_global)
 		swing_animation_player.play("swing")
 		velocity += cursor_global - global_position
+		for enemie: NB_enemie in swing_area.get_overlapping_bodies():
+			enemie.dmg(swing_dmg)
 
 func _physics_process(delta: float) -> void:
 	var movement: Vector2 = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
